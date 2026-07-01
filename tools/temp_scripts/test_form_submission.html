@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Task Creation Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .error { color: red; margin-top: 5px; }
+        .success { color: green; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Test Task Creation Form</h1>
+    
+    <form id="taskForm" action="http://127.0.0.1:8000/ar/tasks" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_token" id="csrf_token" value="">
+        
+        <div class="form-group">
+            <label for="title">Title *</label>
+            <input type="text" id="title" name="title" value="Test Task Title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea id="description" name="description" rows="4" required>This is a test task description to check if form submission works.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="category_id">Category *</label>
+            <select id="category_id" name="category_id" required>
+                <option value="1">General</option>
+                <option value="2">Programming</option>
+                <option value="3">Design</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="budget_min">Minimum Budget *</label>
+            <input type="number" id="budget_min" name="budget_min" value="100" min="1" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="budget_max">Maximum Budget</label>
+            <input type="number" id="budget_max" name="budget_max" value="500" min="1">
+        </div>
+        
+        <div class="form-group">
+            <label for="deadline">Deadline *</label>
+            <input type="date" id="deadline" name="deadline" value="2024-02-15" required>
+        </div>
+        
+        <button type="submit">Create Task</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        // Get CSRF token first
+        fetch('http://127.0.0.1:8000/ar/tasks/create')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const csrfToken = doc.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+                                 doc.querySelector('input[name="_token"]')?.value;
+                if (csrfToken) {
+                    document.getElementById('csrf_token').value = csrfToken;
+                    console.log('CSRF token obtained:', csrfToken);
+                } else {
+                    console.error('Could not obtain CSRF token');
+                }
+            })
+            .catch(error => {
+                console.error('Error getting CSRF token:', error);
+            });
+        
+        document.getElementById('taskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = '<p>Submitting form...</p>';
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                credentials: 'include',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                resultDiv.innerHTML = '<div class="success">Form submitted successfully!</div><pre>' + data + '</pre>';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultDiv.innerHTML = '<div class="error">Error: ' + error.message + '</div>';
+            });
+        });
+    </script>
+</body>
+</html>

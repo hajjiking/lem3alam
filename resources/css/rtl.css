@@ -1,0 +1,794 @@
+/* Enhanced RTL Support for Arabic */
+
+/* Typography Enhancements for Arabic */
+[dir="rtl"] {
+    font-family: 'Cairo', 'Tajawal', 'Amiri', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+}
+
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+[dir="rtl"] .hero-title {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+
+[dir="rtl"] .hero-subtitle {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* Enhanced Navigation for RTL */
+[dir="rtl"] .navbar {
+    direction: rtl;
+}
+
+[dir="rtl"] .navbar .container {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+[dir="rtl"] .navbar-brand {
+    font-family: 'Cairo', 'Amiri', serif;
+    font-weight: 700;
+    margin-left: 0;
+    margin-right: auto;
+    order: 1;
+}
+
+[dir="rtl"] .navbar-collapse {
+    order: 2;
+}
+
+[dir="rtl"] .navbar-nav {
+    flex-direction: row;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+[dir="rtl"] .nav-link {
+    text-align: right;
+    padding-right: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+}
+
+[dir="rtl"] .nav-link i {
+    margin-left: var(--spacing-sm);
+    margin-right: 0;
+}
+
+[dir="rtl"] .dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+    padding-right: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+}
+
+/* Enhanced Form Controls for RTL */
+[dir="rtl"] .form-control,
+[dir="rtl"] .form-select {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .form-select {
+    background-position: left var(--spacing-sm) center;
+    padding-left: 2.5rem;
+    padding-right: var(--spacing-md);
+}
+
+[dir="rtl"] .form-label {
+    text-align: right;
+    display: block;
+}
+
+[dir="rtl"] .form-check {
+    text-align: right;
+    padding-right: 1.5em;
+    padding-left: 0;
+}
+
+[dir="rtl"] .form-check-input {
+    margin-right: -1.5em;
+    margin-left: 0;
+}
+
+/* Enhanced Button Styles for RTL */
+[dir="rtl"] .btn {
+    direction: rtl;
+}
+
+[dir="rtl"] .btn i {
+    margin-left: var(--spacing-sm);
+    margin-right: 0;
+}
+
+[dir="rtl"] .btn-group {
+    direction: rtl;
+}
+
+/* Enhanced Card Layout for RTL */
+[dir="rtl"] .card {
+    text-align: right;
+}
+
+[dir="rtl"] .card-header,
+[dir="rtl"] .card-body,
+[dir="rtl"] .card-footer {
+    text-align: right;
+}
+
+[dir="rtl"] .card-title {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 700;
+}
+
+/* Enhanced List Styles for RTL */
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] li {
+    text-align: right;
+}
+
+/* Enhanced Table Styles for RTL */
+[dir="rtl"] .table {
+    direction: rtl;
+}
+
+[dir="rtl"] .table th,
+[dir="rtl"] .table td {
+    text-align: right;
+    border-left: 1px solid var(--neutral-200);
+    border-right: none;
+}
+
+[dir="rtl"] .table th:first-child,
+[dir="rtl"] .table td:first-child {
+    border-left: none;
+}
+
+[dir="rtl"] .table th:last-child,
+[dir="rtl"] .table td:last-child {
+    border-right: 1px solid var(--neutral-200);
+}
+
+/* Enhanced Modal for RTL */
+[dir="rtl"] .modal-header {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-title {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 700;
+}
+
+[dir="rtl"] .modal-body {
+    text-align: right;
+}
+
+[dir="rtl"] .modal-footer {
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .btn-close {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* Enhanced Alert Styles for RTL */
+[dir="rtl"] .alert {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .alert-dismissible .btn-close {
+    left: 0;
+    right: auto;
+    padding-left: 0.75rem;
+    padding-right: 1.25rem;
+}
+
+/* Enhanced Badge for RTL */
+[dir="rtl"] .badge {
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+
+/* Enhanced Breadcrumb for RTL */
+[dir="rtl"] .breadcrumb {
+    direction: rtl;
+}
+
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+    content: "‹";
+    float: right;
+    padding-left: 0;
+    padding-right: 0.5rem;
+}
+
+/* Enhanced Pagination for RTL */
+[dir="rtl"] .pagination {
+    direction: rtl;
+}
+
+[dir="rtl"] .page-link {
+    text-align: center;
+}
+
+/* Enhanced Progress Bar for RTL */
+[dir="rtl"] .progress {
+    direction: ltr; /* Keep progress direction LTR for consistency */
+}
+
+/* Enhanced Tooltip and Popover for RTL */
+[dir="rtl"] .tooltip {
+    direction: rtl;
+}
+
+[dir="rtl"] .tooltip-inner {
+    text-align: right;
+    font-family: 'Cairo', sans-serif;
+}
+
+[dir="rtl"] .popover {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .popover-header {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 700;
+}
+
+/* Enhanced Accordion for RTL */
+[dir="rtl"] .accordion-button {
+    text-align: right;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+
+[dir="rtl"] .accordion-button::after {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+[dir="rtl"] .accordion-body {
+    text-align: right;
+}
+
+/* Enhanced Carousel for RTL */
+[dir="rtl"] .carousel-control-prev {
+    right: 0;
+    left: auto;
+}
+
+[dir="rtl"] .carousel-control-next {
+    left: 0;
+    right: auto;
+}
+
+[dir="rtl"] .carousel-indicators {
+    direction: rtl;
+}
+
+/* Enhanced Offcanvas for RTL */
+[dir="rtl"] .offcanvas-start {
+    right: 0;
+    left: auto;
+    border-left: 1px solid var(--neutral-200);
+    border-right: none;
+}
+
+[dir="rtl"] .offcanvas-end {
+    left: 0;
+    right: auto;
+    border-right: 1px solid var(--neutral-200);
+    border-left: none;
+}
+
+[dir="rtl"] .offcanvas-header {
+    text-align: right;
+}
+
+[dir="rtl"] .offcanvas-title {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-weight: 700;
+}
+
+[dir="rtl"] .offcanvas-body {
+    text-align: right;
+}
+
+/* Enhanced Flex Utilities for RTL */
+[dir="rtl"] .flex-row {
+    flex-direction: row-reverse !important;
+}
+
+[dir="rtl"] .flex-row-reverse {
+    flex-direction: row !important;
+}
+
+[dir="rtl"] .justify-content-start {
+    justify-content: flex-end !important;
+}
+
+[dir="rtl"] .justify-content-end {
+    justify-content: flex-start !important;
+}
+
+[dir="rtl"] .text-start {
+    text-align: right !important;
+}
+
+[dir="rtl"] .text-end {
+    text-align: left !important;
+}
+
+/* Enhanced Margin and Padding for RTL */
+[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .me-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+[dir="rtl"] .ps-0 { padding-right: 0 !important; padding-left: inherit; }
+[dir="rtl"] .ps-1 { padding-right: 0.25rem !important; padding-left: inherit; }
+[dir="rtl"] .ps-2 { padding-right: 0.5rem !important; padding-left: inherit; }
+[dir="rtl"] .ps-3 { padding-right: 1rem !important; padding-left: inherit; }
+[dir="rtl"] .ps-4 { padding-right: 1.5rem !important; padding-left: inherit; }
+[dir="rtl"] .ps-5 { padding-right: 3rem !important; padding-left: inherit; }
+
+[dir="rtl"] .pe-0 { padding-left: 0 !important; padding-right: inherit; }
+[dir="rtl"] .pe-1 { padding-left: 0.25rem !important; padding-right: inherit; }
+[dir="rtl"] .pe-2 { padding-left: 0.5rem !important; padding-right: inherit; }
+[dir="rtl"] .pe-3 { padding-left: 1rem !important; padding-right: inherit; }
+[dir="rtl"] .pe-4 { padding-left: 1.5rem !important; padding-right: inherit; }
+[dir="rtl"] .pe-5 { padding-left: 3rem !important; padding-right: inherit; }
+
+[dir="rtl"] .ms-0 { margin-right: 0 !important; margin-left: inherit; }
+[dir="rtl"] .ms-1 { margin-right: 0.25rem !important; margin-left: inherit; }
+[dir="rtl"] .ms-2 { margin-right: 0.5rem !important; margin-left: inherit; }
+[dir="rtl"] .ms-3 { margin-right: 1rem !important; margin-left: inherit; }
+[dir="rtl"] .ms-4 { margin-right: 1.5rem !important; margin-left: inherit; }
+[dir="rtl"] .ms-5 { margin-right: 3rem !important; margin-left: inherit; }
+
+[dir="rtl"] .me-0 { margin-left: 0 !important; margin-right: inherit; }
+[dir="rtl"] .me-1 { margin-left: 0.25rem !important; margin-right: inherit; }
+[dir="rtl"] .me-2 { margin-left: 0.5rem !important; margin-right: inherit; }
+[dir="rtl"] .me-3 { margin-left: 1rem !important; margin-right: inherit; }
+[dir="rtl"] .me-4 { margin-left: 1.5rem !important; margin-right: inherit; }
+[dir="rtl"] .me-5 { margin-left: 3rem !important; margin-right: inherit; }
+
+/* Enhanced Float Utilities for RTL */
+[dir="rtl"] .float-start {
+    float: right !important;
+}
+
+[dir="rtl"] .float-end {
+    float: left !important;
+}
+
+/* Enhanced Position Utilities for RTL */
+[dir="rtl"] .start-0 { right: 0 !important; left: auto !important; }
+[dir="rtl"] .start-50 { right: 50% !important; left: auto !important; }
+[dir="rtl"] .start-100 { right: 100% !important; left: auto !important; }
+
+[dir="rtl"] .end-0 { left: 0 !important; right: auto !important; }
+[dir="rtl"] .end-50 { left: 50% !important; right: auto !important; }
+[dir="rtl"] .end-100 { left: 100% !important; right: auto !important; }
+
+/* Enhanced Border Utilities for RTL */
+[dir="rtl"] .border-start {
+    border-right: 1px solid var(--neutral-200) !important;
+    border-left: none !important;
+}
+
+[dir="rtl"] .border-end {
+    border-left: 1px solid var(--neutral-200) !important;
+    border-right: none !important;
+}
+
+[dir="rtl"] .border-start-0 {
+    border-right: 0 !important;
+}
+
+[dir="rtl"] .border-end-0 {
+    border-left: 0 !important;
+}
+
+/* Enhanced Rounded Utilities for RTL */
+[dir="rtl"] .rounded-start {
+    border-top-right-radius: var(--radius-md) !important;
+    border-bottom-right-radius: var(--radius-md) !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+[dir="rtl"] .rounded-end {
+    border-top-left-radius: var(--radius-md) !important;
+    border-bottom-left-radius: var(--radius-md) !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+/* Enhanced Custom Components for RTL */
+[dir="rtl"] .hero-section {
+    text-align: center; /* Keep hero centered for both directions */
+}
+
+[dir="rtl"] .modern-hero {
+    text-align: center;
+}
+
+[dir="rtl"] .hero-content-overlay {
+    text-align: center;
+}
+
+[dir="rtl"] .hero-title,
+[dir="rtl"] .hero-subtitle {
+    text-align: center;
+}
+
+[dir="rtl"] .section-header {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .section-icon {
+    margin-left: var(--spacing-md);
+    margin-right: 0;
+}
+
+/* Enhanced Form Styling for RTL */
+[dir="rtl"] .form-label {
+    text-align: right;
+    display: block;
+}
+
+[dir="rtl"] .form-control,
+[dir="rtl"] .form-select {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .form-control::placeholder {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .input-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .input-group .form-control {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+[dir="rtl"] .input-group .btn {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+/* Enhanced Button Styling for RTL */
+[dir="rtl"] .btn {
+    text-align: center;
+}
+
+[dir="rtl"] .btn i {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .btn-group {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .d-flex.justify-content-end {
+    flex-direction: row-reverse;
+    justify-content: flex-start !important;
+}
+
+[dir="rtl"] .d-flex.gap-3 {
+    gap: 1rem;
+}
+
+/* Enhanced Form Actions for RTL */
+[dir="rtl"] .d-flex.justify-content-end.gap-3.pt-4.border-top {
+    flex-direction: row-reverse;
+    justify-content: flex-start !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid var(--neutral-200) !important;
+}
+
+[dir="rtl"] .btn-secondary-modern {
+    order: 2;
+}
+
+[dir="rtl"] .btn-primary-modern {
+    order: 1;
+}
+
+/* Enhanced Add Skill Button for RTL */
+[dir="rtl"] .d-flex.gap-2.mb-3 {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .d-flex.gap-2.mb-3 .form-control {
+    order: 2;
+}
+
+[dir="rtl"] .d-flex.gap-2.mb-3 .btn {
+    order: 1;
+}
+
+/* Enhanced Badge and Pills for RTL */
+[dir="rtl"] .badge {
+    text-align: center;
+}
+
+[dir="rtl"] .badge i {
+    margin-left: 0.25rem;
+    margin-right: 0;
+}
+
+/* Enhanced Card Styling for RTL */
+[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+[dir="rtl"] .card-title {
+    text-align: right;
+}
+
+/* Enhanced Dropdown for RTL */
+[dir="rtl"] .dropdown-menu {
+    text-align: right;
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+/* Enhanced Skills List for RTL */
+[dir="rtl"] .d-flex.flex-wrap {
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .badge.d-flex.align-items-center {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .btn-close {
+    margin-left: 0;
+    margin-right: 0.25rem;
+}
+
+/* Enhanced Section Styling for RTL */
+[dir="rtl"] .section-header h4 {
+    text-align: center;
+}
+
+[dir="rtl"] .section-header p {
+    text-align: center;
+}
+
+[dir="rtl"] .section-header .badge {
+    margin-bottom: 1rem;
+}
+
+/* Enhanced Radio Button Styling for RTL */
+[dir="rtl"] .form-check {
+    text-align: right;
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+
+[dir="rtl"] .form-check-input {
+    margin-right: -1.5rem;
+    margin-left: 0;
+}
+
+[dir="rtl"] .form-check-label {
+    padding-right: 0.5rem;
+    padding-left: 0;
+}
+
+/* Enhanced File Input Styling for RTL */
+[dir="rtl"] .form-control[type="file"] {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Enhanced Preview Grid for RTL */
+[dir="rtl"] .row.g-3 {
+    direction: rtl;
+}
+
+[dir="rtl"] .col-6,
+[dir="rtl"] .col-md-3,
+[dir="rtl"] .col-md-6 {
+    text-align: right;
+}
+
+/* Enhanced Small Text for RTL */
+[dir="rtl"] .text-muted {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Enhanced Invalid Feedback for RTL */
+[dir="rtl"] .invalid-feedback {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Enhanced Border Top for RTL */
+[dir="rtl"] .border-top {
+    border-top: 1px solid var(--neutral-200) !important;
+}
+
+/* Enhanced Responsive Adjustments for RTL */
+@media (max-width: 768px) {
+    [dir="rtl"] .d-flex.justify-content-end {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    [dir="rtl"] .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    [dir="rtl"] .section-header {
+        text-align: center;
+    }
+    
+    [dir="rtl"] .form-check {
+        text-align: center;
+        padding-right: 0;
+    }
+    
+    [dir="rtl"] .form-check-input {
+        margin-right: 0;
+    }
+}
+
+[dir="rtl"] .stat-item {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .stat-item i {
+    margin-left: var(--spacing-sm);
+    margin-right: 0;
+}
+
+/* Enhanced Language Switcher for RTL */
+[dir="rtl"] .language-switcher {
+    direction: rtl;
+}
+
+[dir="rtl"] .language-switcher .dropdown-toggle {
+    text-align: right;
+}
+
+[dir="rtl"] .language-switcher .dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+}
+
+/* Enhanced Search Components for RTL */
+[dir="rtl"] .search-form {
+    direction: rtl;
+}
+
+[dir="rtl"] .search-input {
+    text-align: right;
+    padding-right: var(--spacing-md);
+    padding-left: 3rem;
+}
+
+[dir="rtl"] .search-btn {
+    left: 0;
+    right: auto;
+}
+
+/* Enhanced Task Components for RTL */
+[dir="rtl"] .task-card {
+    text-align: right;
+}
+
+[dir="rtl"] .task-meta {
+    direction: rtl;
+}
+
+[dir="rtl"] .task-actions {
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .task-status {
+    direction: rtl;
+}
+
+/* Enhanced Profile Components for RTL */
+[dir="rtl"] .profile-header {
+    text-align: right;
+}
+
+[dir="rtl"] .profile-avatar {
+    margin-left: var(--spacing-lg);
+    margin-right: 0;
+}
+
+[dir="rtl"] .profile-info {
+    text-align: right;
+}
+
+[dir="rtl"] .profile-stats {
+    direction: rtl;
+}
+
+/* Enhanced Responsive Adjustments for RTL */
+@media (max-width: 768px) {
+    [dir="rtl"] .navbar-nav {
+        text-align: right;
+    }
+    
+    [dir="rtl"] .navbar-toggler {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    
+    [dir="rtl"] .offcanvas-start {
+        width: 100%;
+    }
+    
+    [dir="rtl"] .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    [dir="rtl"] .section-icon {
+        margin: 0 auto var(--spacing-sm);
+    }
+}
+
+/* Enhanced Print Styles for RTL */
+@media print {
+    [dir="rtl"] * {
+        direction: rtl !important;
+        text-align: right !important;
+    }
+    
+    [dir="rtl"] .navbar,
+    [dir="rtl"] .sidebar,
+    [dir="rtl"] .footer {
+        display: none !important;
+    }
+}

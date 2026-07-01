@@ -1,0 +1,79 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: m3alam-app
+    container_name: m3alam-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - m3alam-network
+
+  queue:
+    image: m3alam-app
+    container_name: m3alam-queue
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work --tries=3 --backoff=5
+    volumes:
+      - .:/var/www
+    depends_on:
+      - app
+      - db
+    networks:
+      - m3alam-network
+
+  scheduler:
+    image: m3alam-app
+    container_name: m3alam-scheduler
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan schedule:work
+    volumes:
+      - .:/var/www
+    depends_on:
+      - app
+      - db
+    networks:
+      - m3alam-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: m3alam-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - m3alam-network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: m3alam-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - m3alam-network
+
+networks:
+  m3alam-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local

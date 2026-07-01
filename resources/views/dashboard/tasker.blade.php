@@ -1,0 +1,107 @@
+@extends('layouts.app')
+
+@section('title', 'Tasker Dashboard - M3alam')
+
+@section('content')
+@php
+    $user = auth()->user();
+    $appsTotal = $user->applications()->count();
+    $appsAccepted = $user->applications()->where('status', 'accepted')->count();
+    $appsPending = $user->applications()->where('status', 'pending')->count();
+    $earnings = $user->applications()->where('status', 'completed')->sum('proposed_budget') ?? 0;
+    $availableTasks = \App\Models\Task::where('status', 'open')->with('client')->latest()->take(5)->get();
+@endphp
+
+<div class="space-y-6">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-extrabold tracking-tight">مرحباً، {{ $user->name }}</h1>
+            <p class="ui-muted mt-1">Browse tasks and manage your applications.</p>
+        </div>
+        <a href="{{ localized_route('tasks.index') }}" class="ui-btn ui-btn-primary">{{ __('ui.browse_tasks') }}</a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="ui-card">
+            <div class="ui-card-body">
+                <div class="ui-muted">Applications</div>
+                <div class="mt-2 text-2xl font-extrabold">{{ $appsTotal }}</div>
+            </div>
+        </div>
+        <div class="ui-card">
+            <div class="ui-card-body">
+                <div class="ui-muted">Accepted</div>
+                <div class="mt-2 text-2xl font-extrabold">{{ $appsAccepted }}</div>
+            </div>
+        </div>
+        <div class="ui-card">
+            <div class="ui-card-body">
+                <div class="ui-muted">Pending</div>
+                <div class="mt-2 text-2xl font-extrabold">{{ $appsPending }}</div>
+            </div>
+        </div>
+        <div class="ui-card">
+            <div class="ui-card-body">
+                <div class="ui-muted">Earnings</div>
+                <div class="mt-2 text-2xl font-extrabold">{{ number_format($earnings, 2) }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-card">
+        <div class="flex items-center justify-between border-b border-slate-200/70 px-6 py-4 dark:border-slate-800/70">
+            <div>
+                <div class="text-base font-extrabold tracking-tight">المهام المتاحة</div>
+                <div class="ui-muted">Latest open tasks</div>
+            </div>
+            <a href="{{ localized_route('tasks.index') }}" class="ui-btn ui-btn-secondary">Browse all</a>
+        </div>
+
+        <div class="ui-card-body">
+            @if($availableTasks->count() > 0)
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[760px] text-sm">
+                        <thead class="text-left text-slate-500 dark:text-slate-400">
+                            <tr>
+                                <th class="py-3 font-semibold">Title</th>
+                                <th class="py-3 font-semibold">Client</th>
+                                <th class="py-3 font-semibold">Budget</th>
+                                <th class="py-3 font-semibold">Created</th>
+                                <th class="py-3 font-semibold">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200/70 dark:divide-slate-800/70">
+                            @foreach($availableTasks as $task)
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/40">
+                                    <td class="py-3 font-semibold">
+                                        <a class="hover:underline" href="{{ localized_route('tasks.show', $task->id) }}">{{ $task->title }}</a>
+                                    </td>
+                                    <td class="py-3">{{ $task->client?->name ?? '—' }}</td>
+                                    <td class="py-3">{{ number_format($task->budget, 2) }}</td>
+                                    <td class="py-3">{{ $task->created_at->format('Y-m-d') }}</td>
+                                    <td class="py-3">
+                                        <div class="flex gap-2">
+                                            <a href="{{ localized_route('tasks.show', $task->id) }}" class="ui-btn ui-btn-secondary px-3 py-2">View</a>
+                                            <form action="{{ localized_route('tasks.apply', $task->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="ui-btn ui-btn-primary px-3 py-2">Apply</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="rounded-2xl border border-dashed border-slate-200 p-10 text-center dark:border-slate-800">
+                    <div class="text-3xl">⌁</div>
+                    <div class="mt-3 text-base font-extrabold tracking-tight">لا توجد مهام متاحة حالياً</div>
+                    <div class="ui-muted mt-1">تحقق مرة أخرى لاحقاً للعثور على مهام جديدة</div>
+                    <a href="{{ localized_route('tasks.index') }}" class="ui-btn ui-btn-primary mt-5">{{ __('ui.browse_tasks') }}</a>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+@endsection

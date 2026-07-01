@@ -1,0 +1,21 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+    level: 5
+    tmpDir: storage/framework/cache/phpstan
+    checkModelProperties: true
+    checkOctaneCompatibility: false
+    excludePaths:
+        - tests/**/*
+    reportUnmatchedIgnoredErrors: false
+    universalObjectCratesClasses:
+        - Illuminate\Support\Fluent
+        - Illuminate\Testing\TestResponse
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Model::factory\(\).#'
+        - '#Access to an undefined property App\\Models\\.*::\$.*#'
+        - '#Relation .+ is not found in App\\\\Models\\\\(Task|Category|TaskApplication) model\\.#'
+        - '#Call to function is_array\\(\\) with string\\\|null will always evaluate to false\\.#'
